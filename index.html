@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Md. Fahim Sultan - Computer Science & Engineering</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-blue: #1e2659;
+            --light-blue: #dbeafe;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --gold: #f59e0b;
+            --emerald: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--light-blue) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #fff, var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 1rem 0;
+        }
+
+        .nav-menu li {
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background: rgba(255,255,255,0.1);
+            border-left-color: var(--gold);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .nav-menu i {
+            margin-right: 12px;
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 0;
+            overflow-y: auto;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #fff, var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text .title {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .contact-item i {
+            color: var(--gold);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--emerald));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Biography Section */
+        .bio-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray-800);
+            margin-bottom: 2rem;
+        }
+
+        /* Research Interests */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .research-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary-blue);
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .research-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .research-card i {
+            color: var(--gold);
+        }
+
+        /* News Section */
+        .news-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .news-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-date {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .news-content {
+            flex: 1;
+        }
+
+        .news-title {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .news-description {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* Publications Section */
+        .publication-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--secondary-blue);
+        }
+
+        .publication-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .publication-authors {
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-venue {
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+            
+            .nav-menu {
+                display: flex;
+                overflow-x: auto;
+                padding: 0;
+            }
+            
+            .nav-menu li {
+                flex-shrink: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .content-section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-blue);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-blue);
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-graduation-cap"></i> Navigation</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#research"><i class="fas fa-flask"></i> Research</a></li>
+                <li><a href="#publications"><i class="fas fa-file-alt"></i> Publications</a></li>
+                <li><a href="#cv"><i class="fas fa-user-graduate"></i> CV</a></li>
+                <li><a href="#teaching"><i class="fas fa-chalkboard-teacher"></i> Teaching</a></li>
+                <li><a href="#projects"><i class="fas fa-laptop-code"></i> Projects</a></li>
+                <li><a href="#awards"><i class="fas fa-trophy"></i> Awards</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section id="home" class="hero-section">
+                <div class="hero-content">
+                    <img src="https://via.placeholder.com/200x200/1e3a8a/ffffff?text=FS" alt="Dr. Md. Fahim Sultan" class="profile-image">
+                    <div class="hero-text">
+                        <h1>Dr. Md. Fahim Sultan</h1>
+                        <div class="title">PhD Student in Computer Science & Engineering</div>
+                        <div class="subtitle">Information Technology • Oakland University</div>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-university"></i>
+                                <span>Oakland University, Rochester, MI</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>fsultan[AT]oakland[DOT]edu</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>PhD in Computer Science & Engineering</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn Profile</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Biography Section -->
+            <section class="content-section fade-in">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate researcher dedicated to advancing the frontiers of computer science and information technology</p>
+                </div>
+                
+                <div class="bio-content">
+                    <p class="bio-text">
+                        I am a dedicated PhD student in Computer Science and Engineering at Oakland University, specializing in Information Technology. 
+                        My research focuses on cutting-edge technologies including artificial intelligence, machine learning, cybersecurity, and quantum computing. 
+                        I am passionate about developing innovative solutions that bridge theoretical computer science with practical real-world applications.
+                    </p>
+                    <p class="bio-text">
+                        Throughout my academic journey, I have been committed to excellence in both research and education. I strive to contribute meaningfully 
+                        to the scientific community through high-quality publications, collaborative research projects, and mentoring the next generation of 
+                        computer scientists. My work aims to address contemporary challenges in technology while pushing the boundaries of what's possible in our field.
+                    </p>
+                </div>
+
+                <!-- Research Interests -->
+                <div class="section-header" style="margin-top: 4rem;">
+                    <h3 style="font-size: 2rem; color: var(--primary-blue); text-align: center;">Research Interests</h3>
+                </div>
+                
+                <div class="research-grid">
+                    <div class="research-card">
+                        <h3><i class="fas fa-robot"></i> Artificial Intelligence</h3>
+                        <p>Advanced AI algorithms, neural networks, and intelligent systems design for solving complex computational problems.</p>
+                    </div>
+                    <div class="research-card">
+                        <h3><i class="fas fa-brain"></i> Machine Learning</h3>
+                        <p>Deep learning architectures, pattern recognition, and data-driven decision making systems.</p>
+                    </div>
+                    <div class="research-card">
+                        <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
+                        <p>Information security, threat detection, cryptography, and secure system design.</p>
+                    </div>
+                    <div class="research-card">
+                        <h3><i class="fas fa-atom"></i> Quantum Computing</h3>
+                        <p>Quantum algorithms, quantum machine learning, and quantum information processing.</p>
+                    </div>
+                    <div class="research-card">
+                        <h3><i class="fas fa-database"></i> Data Science</h3>
+                        <p>Big data analytics, data mining, and computational methods for large-scale data processing.</p>
+                    </div>
+                    <div class="research-card">
+                        <h3><i class="fas fa-network-wired"></i> Distributed Systems</h3>
+                        <p>Cloud computing, distributed algorithms, and scalable system architectures.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News Section -->
+            <section class="content-section" style="background: var(--gray-50);">
+                <div class="section-header">
+                    <h2 class="section-title">Latest News & Updates</h2>
+                    <p class="section-subtitle">Recent achievements, publications, and academic milestones</p>
+                </div>
+                
+                <div class="news-container">
+                    <div class="news-item">
+                        <div class="news-date">Jan 2025</div>
+                        <div class="news-content">
+                            <div class="news-title">Started PhD Program at Oakland University</div>
+                            <div class="news-description">Officially began my doctoral studies in Computer Science and Engineering with a focus on Information Technology.</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">Dec 2024</div>
+                        <div class="news-content">
+                            <div class="news-title">Research Paper Accepted</div>
+                            <div class="news-description">Latest research on machine learning applications in cybersecurity accepted for publication in a peer-reviewed journal.</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">Nov 2024</div>
+                        <div class="news-content">
+                            <div class="news-title">Conference Presentation</div>
+                            <div class="news-description">Presented research findings at the International Conference on Computer Science and Engineering.</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">Oct 2024</div>
+                        <div class="news-content">
+                            <div class="news-title">Academic Award Received</div>
+                            <div class="news-description">Recognized for outstanding academic performance and research contributions in the field of Information Technology.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section id="publications" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Publications & Research</h2>
+                    <p class="section-subtitle">Contributions to the scientific community through peer-reviewed publications</p>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="publication-title">Advanced Machine Learning Techniques for Cybersecurity Applications</div>
+                    <div class="publication-authors"><strong>Md. Fahim Sultan</strong>, Co-Author Name, Another Author</div>
+                    <div class="publication-venue">Journal of Computer Science and Technology, 2024 (Under Review)</div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="publication-title">Quantum Computing Applications in Information Security</div>
+                    <div class="publication-authors"><strong>Md. Fahim Sultan</strong>, Research Collaborator</div>
+                    <div class="publication-venue">Proceedings of International Conference on Quantum Computing, 2024</div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="publication-title">Deep Learning Approaches for Network Intrusion Detection</div>
+                    <div class="publication-authors"><strong>Md. Fahim Sultan</strong>, Dr. Advisor Name, Co-researcher</div>
+                    <div class="publication-venue">IEEE Transactions on Network Security, 2023 (Submitted)</div>
+                </div>
+            </section>
+
+            <!-- CV Section -->
+            <section id="cv" class="content-section" style="background: var(--gray-50);">
+                <div class="section-header">
+                    <h2 class="section-title">Curriculum Vitae</h2>
+                    <p class="section-subtitle">Complete academic and professional background</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="#" style="display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 10px; font-weight: 600; transition: transform 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                        <i class="fas fa-download" style="margin-right: 0.5rem;"></i>
+                        Download Complete CV
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-menu a').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Scroll to section
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Dynamic year update
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentYear = new Date().getFullYear();
+            const yearElements = document.querySelectorAll('.current-year');
+            yearElements.forEach(el => el.textContent = currentYear);
+        });
+    </script>
+</body>
+</html>
